@@ -13,25 +13,26 @@ public class ListaTarefa {
         this.tarefaList = new ArrayList<>();
     }
 
-    public void adiccionarTarefa(String descricao){
+    public void adiccionarTarefa(String descricao) {
         tarefaList.add(new Tarefa(descricao));
     }
 
-    public void removerTarefa(String descricao){
+    public void removerTarefa(String descricao) {
         List<Tarefa> tarefasParaRemover = new ArrayList<>();
 
-        for(Tarefa t : tarefaList){
-            if(t.getDescicao().equalsIgnoreCase(descricao)){
+        for (Tarefa t : tarefaList) {
+            if (t.getDescicao().equalsIgnoreCase(descricao)) {
                 tarefasParaRemover.add(t);
             }
         }
         tarefaList.removeAll(tarefasParaRemover);
     }
-    public int obterNumeroTotalTarefas(){
+
+    public int obterNumeroTotalTarefas() {
         return tarefaList.size();
     }
 
-    public void obterDescricoesTarefas(){
+    public void obterDescricoesTarefas() {
         System.out.println(tarefaList);
     }
 
@@ -39,9 +40,11 @@ public class ListaTarefa {
 
         Predicate<Tarefa> tarefaEncontrada = t -> t.getDescicao().equalsIgnoreCase(tarefaPesquisada);
 
-        List<Tarefa> resultado = this.tarefaList.stream().filter(tarefaEncontrada).toList();
+        List<Tarefa> resultado = this.tarefaList.stream()
+                .filter(tarefaEncontrada)
+                .toList();
 
-        resultado.forEach(System.out::println);
+        resultado.stream().forEach(System.out::println);
 
     }
 
@@ -60,7 +63,7 @@ public class ListaTarefa {
         //listaTarefa.obterDescricoesTarefas();
 
         //Pesquisar tarefa utilizando um lambda
-        listaTarefa.pesquisarTarefa("Tarefa 3");
+        listaTarefa.pesquisarTarefa("Tarefa 1");
     }
 
 }
